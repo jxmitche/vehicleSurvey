@@ -2,7 +2,7 @@ package org.johnm.vehicle.survey.analysis;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,7 +59,7 @@ public class VehicleCountAnalysis {
 	}
 	
 	Map<VehicleCountMapKey, Integer> initialiseCountMap(final int periodsInOneDay) {
-		final Map<VehicleCountMapKey, Integer> countMap = new HashMap<VehicleCountMapKey, Integer>();
+		final Map<VehicleCountMapKey, Integer> countMap = new LinkedHashMap<VehicleCountMapKey, Integer>();
 		final Calendar currentDate = Calendar.getInstance();
 		currentDate.setTime(startDate.getTime());
 		

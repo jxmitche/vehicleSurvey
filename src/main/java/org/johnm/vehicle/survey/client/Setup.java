@@ -27,6 +27,7 @@ public class Setup {
 	private ParseInputFileForVehicleDetectionEvents parser;
 	private Calendar startDateOfSurvey;
 	private List<Map<VehicleCountMapKey, Integer>> countAndTotals;
+	private int numberOfDaysInSurveyData;
 	private NullParamValidator nullValidator = new NullParamValidator();
 
 	
@@ -44,18 +45,22 @@ public class Setup {
 		parser.parseInput();
 		
 		final List<VehicleDetectionEvent> detectionEvents = parser.getDetectionEvents();
-		final int numberOfDaysInSurveyData = parser.getNumberOfDaysOfSensorData(); 
+		numberOfDaysInSurveyData = parser.getNumberOfDaysOfSensorData(); 
 		final VehicleCountAnalysis vehicleCountAnalysis = new VehicleCountAnalysis(detectionEvents, startDateOfSurvey, 
 				numberOfDaysInSurveyData);
 		 
 		final List<Integer> periodsInOneDayList = new ArrayList<Integer>();
-			periodsInOneDayList.add(2);
+		periodsInOneDayList.add(2); //Morning and evenings
+//		periodsInOneDayList.add(24); //per hour
+//		periodsInOneDayList.add(48); //per half hour
+//		periodsInOneDayList.add(72); //per 20 minutes
+//		periodsInOneDayList.add(96); //per 15 minutes
 		 
 		countAndTotals = vehicleCountAnalysis.analyseVehicleCounts(periodsInOneDayList);
 	}
 	
 	public void report(final Reporter reporter) {
-		reporter.report(countAndTotals);
+		reporter.report(countAndTotals, numberOfDaysInSurveyData);
 	}
 	
 	VehicleSurveyEvent createVehicleSurveyEvent() {

@@ -89,7 +89,11 @@ public class ParseInputFileForVehicleDetectionEvents {
 			final SensorEvent lastSensorEvent = sensorEvents.get(sensorEvents.size() -1);
 			final Calendar lastDate = lastSensorEvent.getMidnight();
 			
-			return calculateDaysBetweenDates(vehicleSurveyEvent.getStartDateOfSurvey(), lastDate);
+			final int daysBetween = calculateDaysBetweenDates(vehicleSurveyEvent.getStartDateOfSurvey(), lastDate);
+			final int startDayPlusEndDay = 2;
+			final int daysOfSensorData = daysBetween + startDayPlusEndDay;
+			
+			return daysOfSensorData;
 		}
 		
 		return 0;
@@ -206,7 +210,7 @@ public class ParseInputFileForVehicleDetectionEvents {
 		
 		dateParser.parseDetectionEventsAddingDate();
 	}
-
+	
 	int calculateDaysBetweenDates(final Calendar startDateOfSurvey, final Calendar lastDate) {
 		int days = 0;
 		

@@ -7,5 +7,5 @@ import org.johnm.vehicle.survey.analysis.VehicleCountMapKey;
 
 public interface Reporter {
 
-	public void report(final List<Map<VehicleCountMapKey, Integer>> countAndTotals);
+	public void report(final List<Map<VehicleCountMapKey, Integer>> countAndTotals, final int numberOfDaysInSurveyData);
 }
