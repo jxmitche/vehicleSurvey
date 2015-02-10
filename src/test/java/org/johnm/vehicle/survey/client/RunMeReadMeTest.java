@@ -1,14 +1,23 @@
 package org.johnm.vehicle.survey.client;
 
+import java.net.URL;
+
+import org.johnm.vehicle.survey.input.ReadFileTest;
+import org.junit.Before;
 import org.junit.Test;
 
 public class RunMeReadMeTest {
-	private String fileName = "VehicleSurveyCodingChallengeSampleData.txt";
-	private String dir = "/home/jmitch/Public/xdrive/JavaProjects/vehicleSurveyCodeChallenge/johnm-vehiclesurvey/src/test/resources/";
+	private String fileName;
+	
+	@Before
+	public void setup() {
+		final URL url = ReadFileTest.class.getClassLoader().getResource("VehicleSurveyCodingChallengeSampleData.txt");
+		fileName = url.getFile();
+	}
 	
 	@Test
 	public void testSuppliedInputFile() {
-		final String[] args = {dir + fileName, "20140101"};
+		final String[] args = {fileName, "20140101"};
 		ReadMeRunMe.main(args);
 	}
 }

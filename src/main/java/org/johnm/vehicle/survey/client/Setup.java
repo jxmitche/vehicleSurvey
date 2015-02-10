@@ -55,6 +55,7 @@ public class Setup {
 //		periodsInOneDayList.add(48); //per half hour
 //		periodsInOneDayList.add(72); //per 20 minutes
 //		periodsInOneDayList.add(96); //per 15 minutes
+		//TODO: JM: uncomment these
 		 
 		countAndTotals = vehicleCountAnalysis.analyseVehicleCounts(periodsInOneDayList);
 	}

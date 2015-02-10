@@ -14,10 +14,12 @@ public class SystemOutReporter implements Reporter {
 			for (Map.Entry<VehicleCountMapKey, Integer> entry : countAndTotalMap.entrySet()) {
 				final VehicleCountMapKey key = entry.getKey();
 				
-				if (key.areYearMonthAndDayZero()) {
+				if (key.isTotalForPeriodKey()) {
 					final BigDecimal average = calculateAverage(entry.getValue(), numberOfDaysInSurveyData);
 					System.out.println("Period in Day=" + key.getPeriodInDay() + " VehicleDirection="
 							+ key.getVehicleDirection().toString() + " Total = " + entry.getValue() + " Average = " + average);
+				} else if (key.isMaxVolumePeriodKey()){
+					System.out.println("Peak volume occurs in period = " + key.getPeriodInDay() + " with volume = "+ entry.getValue());
 				} else {
 					System.out.println(key + " Count = " + entry.getValue());
 				}

@@ -2,10 +2,8 @@ package org.johnm.vehicle.survey.analysis;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.fail;
 
 import org.johnm.vehicle.survey.Direction;
-import org.johnm.vehicle.survey.analysis.VehicleCountMapKey;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -57,14 +55,5 @@ public class VehicleCountMapKeyTest {
 		assertFalse(mapKey1.equals(mapKey2));
 	}
 	
-	@Test
-	public void checkNullParamDirection() {
-		try {
-			mapKey2 = new VehicleCountMapKey(year, month, day, periodInDay, null);
-			fail("should not reach here");
-		} catch (IllegalArgumentException ex) {
-			assertEquals("VehicleDirection must not be null", ex.getMessage());
-		}
-	}
 
 }

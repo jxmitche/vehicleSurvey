@@ -55,9 +55,34 @@ public class VehicleCountAnalysis {
 			incrementMapCountForKey(countAndTotalMap, totalMapKey);
 		}
 		
+		addPeakVolumePeriod(countAndTotalMap, periodsInOneDay);
+		
 		return countAndTotalMap;
 	}
 	
+	void addPeakVolumePeriod(Map<VehicleCountMapKey, Integer> countAndTotalMap, final int periodsInOneDay) {
+		int currentMaxVolumeInPeriod = 0;
+		int currentMaxPeriod = 0;
+		
+		for (int i=1; i<=periodsInOneDay; i++) {
+			VehicleCountMapKey key = new VehicleCountMapKey(0, 0, 0, i, Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT);
+			int totalLtoR = countAndTotalMap.get(key);
+			
+			key = new VehicleCountMapKey(0, 0, 0, i, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT);
+			int totalRtoL = countAndTotalMap.get(key);
+			
+			int volume = totalLtoR + totalRtoL;
+			
+			if (volume > currentMaxVolumeInPeriod) {
+				currentMaxVolumeInPeriod = volume;
+				currentMaxPeriod = i;
+			}
+		}
+		
+		VehicleCountMapKey key = new VehicleCountMapKey(0, 0, 0, currentMaxPeriod, null);
+		countAndTotalMap.put(key, currentMaxVolumeInPeriod);
+	}
+
 	Map<VehicleCountMapKey, Integer> initialiseCountMap(final int periodsInOneDay) {
 		final Map<VehicleCountMapKey, Integer> countMap = new LinkedHashMap<VehicleCountMapKey, Integer>();
 		final Calendar currentDate = Calendar.getInstance();
@@ -74,7 +99,7 @@ public class VehicleCountAnalysis {
 	void initialiseCountForPeriodsInDate(final int periodsInOneDay, final Map<VehicleCountMapKey, Integer> countMap,
 			final Calendar currentDate) {
 		
-		for (int periodInDay=0; periodInDay<periodsInOneDay;periodInDay++) {
+		for (int periodInDay=1; periodInDay<=periodsInOneDay;periodInDay++) {
 			initaliseCountForEachDirectionForDateAndPeriod(countMap, currentDate, periodInDay);
 		}
 	}
@@ -132,7 +157,7 @@ public class VehicleCountAnalysis {
 	}
 	
 	int calculatePeriodInDay(final int millisecondsInPeriodPerDay, final int millis) {
-		return millis / millisecondsInPeriodPerDay;
+		return millis / millisecondsInPeriodPerDay + 1;
 	}
 
 }

@@ -1,10 +1,8 @@
 package org.johnm.vehicle.survey.analysis;
 
 import org.johnm.vehicle.survey.Direction;
-import org.johnm.vehicle.survey.validation.NullParamValidator;
 
 public class VehicleCountMapKey {
-	private final NullParamValidator nullValidator = new NullParamValidator();
 	private int year;
 	private int month;
 	private int day;
@@ -12,8 +10,6 @@ public class VehicleCountMapKey {
 	private Direction vehicleDirection;
 	
 	public VehicleCountMapKey(final int year, final int month, final int day, final int periodInDay, final Direction vehicleDirection) {
-		nullValidator.checkNotNull(vehicleDirection, "VehicleDirection");
-		
 		this.year = year;
 		this.month = month;
 		this.day = day;
@@ -21,8 +17,12 @@ public class VehicleCountMapKey {
 		this.vehicleDirection = vehicleDirection;
 	}
 	
-	public boolean areYearMonthAndDayZero() {
-		 return year == 0 && month == 0 && day == 0;
+	public boolean isMaxVolumePeriodKey() {
+		return year == 0 && month == 0 && day == 0 && vehicleDirection == null;
+	}
+	
+	public boolean isTotalForPeriodKey() {
+		 return year == 0 && month == 0 && day == 0 && vehicleDirection != null;
 	}
 
 	public int getYear() {

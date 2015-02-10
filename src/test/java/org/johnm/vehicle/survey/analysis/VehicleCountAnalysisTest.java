@@ -57,7 +57,7 @@ public class VehicleCountAnalysisTest {
 		assertEquals(eventDate.get(Calendar.YEAR), createdMapKey.getYear());
 		assertEquals(eventDate.get(Calendar.MONTH), createdMapKey.getMonth());
 		assertEquals(eventDate.get(Calendar.DATE), createdMapKey.getDay());
-		assertEquals(event.getMillisecondsAfterMidnightOfEvent()/109, createdMapKey.getPeriodInDay());
+		assertEquals(event.getMillisecondsAfterMidnightOfEvent()/109 + 1, createdMapKey.getPeriodInDay());
 		assertEquals(event.getDirection(), createdMapKey.getVehicleDirection());
 	}
 	
@@ -69,7 +69,7 @@ public class VehicleCountAnalysisTest {
 		assertEquals(0, createdMapKey.getYear());
 		assertEquals(0, createdMapKey.getMonth());
 		assertEquals(0, createdMapKey.getDay());
-		assertEquals(event.getMillisecondsAfterMidnightOfEvent()/109, createdMapKey.getPeriodInDay());
+		assertEquals(event.getMillisecondsAfterMidnightOfEvent()/109 + 1, createdMapKey.getPeriodInDay());
 		assertEquals(event.getDirection(), createdMapKey.getVehicleDirection());
 	}
 	
@@ -77,7 +77,7 @@ public class VehicleCountAnalysisTest {
 	public void checkCreateMapKeyForVehicleDetectionEvent() {
 		final VehicleCountMapKey createdMapKey = analyser.createCountMapKeyForVehicleDetectionEvent(111, event);
 		
-		int periodInDay = event.getMillisecondsAfterMidnightOfEvent() / 111;
+		int periodInDay = event.getMillisecondsAfterMidnightOfEvent() / 111 + 1;
 		final VehicleCountMapKey expectedMapKey = new VehicleCountMapKey(2015, Calendar.JANUARY, 2,
 				periodInDay, Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT);
 		
@@ -98,10 +98,34 @@ public class VehicleCountAnalysisTest {
 	}
 	
 	@Test
-	public void checkCalculatePeriodInDay() {
+	public void checkCalculatePeriodInDay_Period9() {
 		int millisecondsInPeriodPerDay = 113;
 		int period = analyser.calculatePeriodInDay(millisecondsInPeriodPerDay, 1000);
 		
-		assertEquals(8, period);
+		assertEquals(9, period);
+	}
+	
+	@Test
+	public void checkCalculatePeriodInDay_Period1() {
+		int millisecondsInPeriodPerDay = 113;
+		int period = analyser.calculatePeriodInDay(millisecondsInPeriodPerDay, 112);
+		
+		assertEquals(1, period);
+	}
+	
+	@Test
+	public void checkCalculatePeriodInDay_Period2Low() {
+		int millisecondsInPeriodPerDay = 113;
+		int period = analyser.calculatePeriodInDay(millisecondsInPeriodPerDay, 114);
+		
+		assertEquals(2, period);
+	}
+	
+	@Test
+	public void checkCalculatePeriodInDay_Period2High() {
+		int millisecondsInPeriodPerDay = 113;
+		int period = analyser.calculatePeriodInDay(millisecondsInPeriodPerDay, 225);
+		
+		assertEquals(2, period);
 	}
 }
