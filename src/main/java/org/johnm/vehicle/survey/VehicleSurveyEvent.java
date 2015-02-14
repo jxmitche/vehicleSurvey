@@ -16,24 +16,24 @@ public class VehicleSurveyEvent {
 	private Direction otherDirection;
 	private Calendar startDateOfSurvey;
 	
-	public VehicleSurveyEvent(final String firstSensorId, final String secondSensorId, final Direction firstSensorDirection,
-			final Direction otherDirection, final Calendar startDateOfSurvey) {
+	public VehicleSurveyEvent(final String firstSensorIdParam, final String secondSensorIdParam, final Direction firstSensorDirectionParam,
+			final Direction otherDirectionParam, final Calendar startDateOfSurveyParam) {
 		
-		nullValidator.checkNotNull(firstSensorId, "FirstSensorId");
-		nullValidator.checkNotNull(secondSensorId, "SecondSensorId");
-		nullValidator.checkNotNull(firstSensorDirection, "FirstSensorDirection");
-		nullValidator.checkNotNull(otherDirection, "OtherDirection");
-		nullValidator.checkNotNull(startDateOfSurvey, "StartDateOfSurvey");
+		nullValidator.checkNotNull(firstSensorIdParam, "FirstSensorId");
+		nullValidator.checkNotNull(secondSensorIdParam, "SecondSensorId");
+		nullValidator.checkNotNull(firstSensorDirectionParam, "FirstSensorDirection");
+		nullValidator.checkNotNull(otherDirectionParam, "OtherDirection");
+		nullValidator.checkNotNull(startDateOfSurveyParam, "StartDateOfSurvey");
 		
-		validateSensorIds(firstSensorId, secondSensorId);
+		validateSensorIds(firstSensorIdParam, secondSensorIdParam);
 		
-		this.firstSensorId = firstSensorId;
-		this.secondSensorId = secondSensorId;
-		this.singleHoseSensorValidSensorId = firstSensorId;
-		this.sensorIdLength = firstSensorId.length();
-		this.firstSensorDirection = firstSensorDirection;
-		this.otherDirection = otherDirection;
-		this.startDateOfSurvey = startDateOfSurvey;
+		this.firstSensorId = firstSensorIdParam;
+		this.secondSensorId = secondSensorIdParam;
+		this.singleHoseSensorValidSensorId = firstSensorIdParam;
+		this.sensorIdLength = firstSensorIdParam.length();
+		this.firstSensorDirection = firstSensorDirectionParam;
+		this.otherDirection = otherDirectionParam;
+		this.startDateOfSurvey = startDateOfSurveyParam;
 	}
 
 	public String getFirstSensorId() {
@@ -61,7 +61,7 @@ public class VehicleSurveyEvent {
 	}
 
 	public List<String> getValidSensorIds() {
-		List<String>sensorIds = new ArrayList<String>();
+		final List<String>sensorIds = new ArrayList<String>();
 		
 		sensorIds.add(firstSensorId);
 		sensorIds.add(secondSensorId);

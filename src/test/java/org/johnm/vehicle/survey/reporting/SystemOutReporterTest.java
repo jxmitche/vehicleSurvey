@@ -2,10 +2,14 @@ package org.johnm.vehicle.survey.reporting;
 
 import static org.junit.Assert.assertEquals;
 
-import java.math.BigDecimal;
+
 
 import org.junit.Before;
+import java.math.BigDecimal;
 import org.junit.Test;
+
+
+
 
 public class SystemOutReporterTest {
 	private SystemOutReporter reporter;

@@ -33,7 +33,7 @@ public class SensorEventTest {
 	}
 	
 	@Test
-	public void check_nullInput() {
+	public void checkNullInput() {
 		try {
 			new SensorEvent(null, sensorIdLength, validIds);
 			fail("should not reach here");
@@ -43,7 +43,7 @@ public class SensorEventTest {
 	}
 	
 	@Test
-	public void check_nullValidIds() {
+	public void checkNullValidIds() {
 		try {
 			new SensorEvent(input, sensorIdLength, null);
 			fail("should not reach here");
@@ -53,7 +53,7 @@ public class SensorEventTest {
 	}
 	
 	@Test
-	public void check_validateSensorIdLengthZero() {
+	public void checkValidateSensorIdLengthZero() {
 		try {
 			new SensorEvent(input, 0, validIds);
 			fail("should not reach here");
@@ -63,7 +63,7 @@ public class SensorEventTest {
 	}
 	
 	@Test
-	public void check_validateSensorIdLengthNegOne() {
+	public void checkValidateSensorIdLengthNegOne() {
 		try {
 			new SensorEvent(input, -1, validIds);
 			fail("should not reach here");
@@ -93,12 +93,12 @@ public class SensorEventTest {
 	}
 	
 	@Test
-	public void check_validateInputOnlyDigits_true() {
+	public void checkValidateInputOnlyDigitsTrue() {
 		assertTrue(sensorEvent.validateInputOnlyDigits("123"));
 	}
 	
 	@Test
-	public void check_validateInputOnlyDigits_false() {
+	public void checkValidateInputOnlyDigitsFalse() {
 		assertFalse(sensorEvent.validateInputOnlyDigits("123a"));
 	}
 	

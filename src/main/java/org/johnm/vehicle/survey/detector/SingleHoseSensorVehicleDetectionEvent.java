@@ -15,19 +15,19 @@ public class SingleHoseSensorVehicleDetectionEvent implements VehicleDetectionEv
 	private final Direction direction;
 	private final boolean isValid;
 	
-	public SingleHoseSensorVehicleDetectionEvent(final SensorEvent firstSensorEvent, final SensorEvent secondSensorEvent,
-			final Direction direction) {
+	public SingleHoseSensorVehicleDetectionEvent(final SensorEvent firstSensorEventParam, final SensorEvent secondSensorEventParam,
+			final Direction directionParam) {
 		
-		nullValidator.checkNotNull(firstSensorEvent, "FirstSensorEvent");
-		nullValidator.checkNotNull(secondSensorEvent, "SecondSensorEvent");
-		nullValidator.checkNotNull(direction, "Direction");
+		nullValidator.checkNotNull(firstSensorEventParam, "FirstSensorEvent");
+		nullValidator.checkNotNull(secondSensorEventParam, "SecondSensorEvent");
+		nullValidator.checkNotNull(directionParam, "Direction");
 		
-		isValid = sensorEventsValid(firstSensorEvent.isValid(), secondSensorEvent.isValid())
-				&& sensorIdsTheSame(firstSensorEvent.getSensorId(), secondSensorEvent.getSensorId());
+		isValid = sensorEventsValid(firstSensorEventParam.isValid(), secondSensorEventParam.isValid())
+				&& sensorIdsTheSame(firstSensorEventParam.getSensorId(), secondSensorEventParam.getSensorId());
 		
-		this.firstSensorEvent = firstSensorEvent;
-		this.secondSensorEvent = secondSensorEvent;
-		this.direction = direction;
+		this.firstSensorEvent = firstSensorEventParam;
+		this.secondSensorEvent = secondSensorEventParam;
+		this.direction = directionParam;
 	}
 	
 	public List<SensorEvent> getSensorEventsInTimeOrder() {

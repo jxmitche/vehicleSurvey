@@ -17,6 +17,7 @@ public class MillisecondsSinceMidnightTest {
 		millisSinceMidnight = new MillisecondsSinceMidnight(millis);
 	}
 	
+	
 	@Test
 	public void checkValidMillis() {
 		assertEquals(123, millisSinceMidnight.getMillisecondsSinceMidnight());

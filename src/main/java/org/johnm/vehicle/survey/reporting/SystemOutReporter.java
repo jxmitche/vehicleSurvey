@@ -8,7 +8,7 @@ import org.johnm.vehicle.survey.analysis.VehicleCountMapKey;
 
 public class SystemOutReporter implements Reporter {
 
-	public void report(List<Map<VehicleCountMapKey, Integer>> countAndTotals, final int numberOfDaysInSurveyData) {
+	public void report(final List<Map<VehicleCountMapKey, Integer>> countAndTotals, final int numberOfDaysInSurveyData) {
 		for (Map<VehicleCountMapKey, Integer> countAndTotalMap : countAndTotals) {
 			
 			for (Map.Entry<VehicleCountMapKey, Integer> entry : countAndTotalMap.entrySet()) {

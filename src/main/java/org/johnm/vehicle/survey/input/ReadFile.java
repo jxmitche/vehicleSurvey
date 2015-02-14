@@ -13,10 +13,10 @@ public class ReadFile {
 	private NullParamValidator nullValidator = new NullParamValidator();
 	
 	
-	public ReadFile(final String path) {
-		nullValidator.checkNotNull(path, "Path");
+	public ReadFile(final String pathName) {
+		nullValidator.checkNotNull(pathName, "Path");
 		
-		this.path = path;
+		this.path = pathName;
 	}
 
 	public List<String> readFile() {
@@ -35,8 +35,9 @@ public class ReadFile {
 		} catch (FileNotFoundException e) {
 			throw new IllegalArgumentException("File not found:" + path);
 		} finally {
-			if (sc != null)
+			if (sc != null) {
 				sc.close();
+			}
 		}
 		
 		return lines;

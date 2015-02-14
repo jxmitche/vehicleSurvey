@@ -19,7 +19,7 @@ public class ReadFileTest {
 	}
 	
 	@Test
-	public void check_file() {
+	public void checkFile() {
 		final List<String> lines = readFile.readFile();
 
 		assertEquals(67296, lines.size());
@@ -27,7 +27,7 @@ public class ReadFileTest {
 	}
 	
 	@Test
-	public void check_NullFileName() {
+	public void checkNullFileName() {
 		try {
 			readFile = new ReadFile(null);
 			fail("should not reach here");
@@ -37,7 +37,7 @@ public class ReadFileTest {
 	}
 	
 	@Test
-	public void check_FileNotFound() {
+	public void checkFileNotFound() {
 		try {
 			readFile = new ReadFile("abcxyz.txt");
 			readFile.readFile();

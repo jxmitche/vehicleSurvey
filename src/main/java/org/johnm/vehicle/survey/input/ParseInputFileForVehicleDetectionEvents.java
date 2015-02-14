@@ -22,12 +22,12 @@ public class ParseInputFileForVehicleDetectionEvents {
 	private final List<SensorEvent> discardedDetectionEvents = new ArrayList<SensorEvent>();
 	
 	
-	public ParseInputFileForVehicleDetectionEvents(final List<String> lines, final VehicleSurveyEvent vehicleSurveyEvent) {
+	public ParseInputFileForVehicleDetectionEvents(final List<String> lines, final VehicleSurveyEvent vehicleSurveyEventParam) {
 		nullValidator.checkNotNull(lines, "Lines");
-		nullValidator.checkNotNull(vehicleSurveyEvent, "VehicleSurveyEvent");
+		nullValidator.checkNotNull(vehicleSurveyEventParam, "VehicleSurveyEventParam");
 		
 		inputLines = lines;
-		this.vehicleSurveyEvent = vehicleSurveyEvent;
+		this.vehicleSurveyEvent = vehicleSurveyEventParam;
 	}
 	
 	public void parseInput() {
@@ -50,7 +50,7 @@ public class ParseInputFileForVehicleDetectionEvents {
 					final SensorEvent thirdSensorEvent = new SensorEvent(twoInputLines.get(0), sensorIdLength, validSensorIds);
 					final SensorEvent fourthSensorEvent = new SensorEvent(twoInputLines.get(1), sensorIdLength, validSensorIds);
 				
-					boolean secondPairLeft = 
+					final boolean secondPairLeft = 
 							processFourSensorEvents(firstSensorEvent, secondSensorEvent, thirdSensorEvent, fourthSensorEvent);
 					
 					if (secondPairLeft) {
@@ -82,9 +82,9 @@ public class ParseInputFileForVehicleDetectionEvents {
 	
 	public int getNumberOfDaysOfSensorData() {
 		if (!detectionEvents.isEmpty()) {
-			int nbrOfEvents = detectionEvents.size();
-			VehicleDetectionEvent lastVehicleDetectionEvent = detectionEvents.get(nbrOfEvents -1);
-			List<SensorEvent> sensorEvents = lastVehicleDetectionEvent.getSensorEventsInTimeOrder();
+			final int nbrOfEvents = detectionEvents.size();
+			final VehicleDetectionEvent lastVehicleDetectionEvent = detectionEvents.get(nbrOfEvents -1);
+			final List<SensorEvent> sensorEvents = lastVehicleDetectionEvent.getSensorEventsInTimeOrder();
 			
 			final SensorEvent lastSensorEvent = sensorEvents.get(sensorEvents.size() -1);
 			final Calendar lastDate = lastSensorEvent.getMidnight();

@@ -192,40 +192,40 @@ public class ParseInputFileForVehicleDetectionEventsTest {
 	
 	@Test
 	public void checkCalculateDaysBetweenDates0() {
-		Calendar lastDate = Calendar.getInstance();
+		final Calendar lastDate = Calendar.getInstance();
 		lastDate.set(2015, Calendar.JANUARY, 5);
 		
-		int result = parser.calculateDaysBetweenDates(startDateOfSurvey, lastDate);
+		final int result = parser.calculateDaysBetweenDates(startDateOfSurvey, lastDate);
 		
 		assertEquals(0, result);
 	}
 	
 	@Test
 	public void checkCalculateDaysBetweenDates1() {
-		Calendar lastDate = Calendar.getInstance();
+		final Calendar lastDate = Calendar.getInstance();
 		lastDate.set(2015, Calendar.JANUARY, 6);
 		
-		int result = parser.calculateDaysBetweenDates(startDateOfSurvey, lastDate);
+		final int result = parser.calculateDaysBetweenDates(startDateOfSurvey, lastDate);
 		
 		assertEquals(1, result);
 	}
 	
 	@Test
 	public void checkCalculateDaysBetweenDates5() {
-		Calendar lastDate = Calendar.getInstance();
+		final Calendar lastDate = Calendar.getInstance();
 		lastDate.set(2015, Calendar.JANUARY, 10);
 		
-		int result = parser.calculateDaysBetweenDates(startDateOfSurvey, lastDate);
+		final int result = parser.calculateDaysBetweenDates(startDateOfSurvey, lastDate);
 		
 		assertEquals(5, result);
 	}
 	
 	@Test
 	public void checkCalculateDaysBetweenDates28acrossMonths() {
-		Calendar lastDate = Calendar.getInstance();
+		final Calendar lastDate = Calendar.getInstance();
 		lastDate.set(2015, Calendar.FEBRUARY, 2);
 		
-		int result = parser.calculateDaysBetweenDates(startDateOfSurvey, lastDate);
+		final int result = parser.calculateDaysBetweenDates(startDateOfSurvey, lastDate);
 		
 		assertEquals(28, result);
 	}
@@ -233,10 +233,10 @@ public class ParseInputFileForVehicleDetectionEventsTest {
 	@Test
 	public void checkCalculateDaysBetweenDates5acrossYears() {
 		startDateOfSurvey.set(2014, Calendar.DECEMBER, 29);
-		Calendar lastDate = Calendar.getInstance();
+		final Calendar lastDate = Calendar.getInstance();
 		lastDate.set(2015, Calendar.JANUARY, 3);
 		
-		int result = parser.calculateDaysBetweenDates(startDateOfSurvey, lastDate);
+		final int result = parser.calculateDaysBetweenDates(startDateOfSurvey, lastDate);
 		
 		assertEquals(5, result);
 	}

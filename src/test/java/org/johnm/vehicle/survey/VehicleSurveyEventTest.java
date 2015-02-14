@@ -14,7 +14,8 @@ public class VehicleSurveyEventTest {
 	
 	@Before
 	public void setup() {
-		event = new VehicleSurveyEvent("A", "B", Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT, Calendar.getInstance());
+		event = new VehicleSurveyEvent("A", "B", Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT,
+				Calendar.getInstance());
 	}
 	
 	@Test
@@ -34,7 +35,8 @@ public class VehicleSurveyEventTest {
 	@Test
 	public void checkFirstSensorIdNull() {
 		try {
-			new VehicleSurveyEvent(null, "B", Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT, Calendar.getInstance());
+			new VehicleSurveyEvent(null, "B", Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT,
+					Calendar.getInstance());
 			fail("should not reach here");
 		} catch (IllegalArgumentException ex) {
 			assertEquals("FirstSensorId must not be null", ex.getMessage());
@@ -44,7 +46,8 @@ public class VehicleSurveyEventTest {
 	@Test
 	public void checkSecondSensorIdNull() {
 		try {
-			new VehicleSurveyEvent("A", null, Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT, Calendar.getInstance());
+			new VehicleSurveyEvent("A", null, Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT,
+					Calendar.getInstance());
 			fail("should not reach here");
 		} catch (IllegalArgumentException ex) {
 			assertEquals("SecondSensorId must not be null", ex.getMessage());
@@ -54,7 +57,8 @@ public class VehicleSurveyEventTest {
 	@Test
 	public void checkBothSensorIdsNull() {
 		try {
-			new VehicleSurveyEvent(null, null, Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT, Calendar.getInstance());
+			new VehicleSurveyEvent(null, null, Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT,
+					Calendar.getInstance());
 			fail("should not reach here");
 		} catch (IllegalArgumentException ex) {
 			assertEquals("FirstSensorId must not be null", ex.getMessage());
@@ -94,7 +98,8 @@ public class VehicleSurveyEventTest {
 	@Test
 	public void checkSensorIdsNotSameLength() {
 		try {
-			new VehicleSurveyEvent("ab", "abc", Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT, Calendar.getInstance());
+			new VehicleSurveyEvent("ab", "abc", Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT,
+					Calendar.getInstance());
 			fail("should not reach here");
 		} catch (IllegalArgumentException ex) {
 			assertEquals("Sensor Ids must be of the same length", ex.getMessage());
@@ -104,7 +109,8 @@ public class VehicleSurveyEventTest {
 	@Test
 	public void checkFirstSensorIdsEmpty() {
 		try {
-			new VehicleSurveyEvent("", "b", Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT, Calendar.getInstance());
+			new VehicleSurveyEvent("", "b", Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT,
+					Calendar.getInstance());
 			fail("should not reach here");
 		} catch (IllegalArgumentException ex) {
 			assertEquals("Sensor Ids must be of the same length", ex.getMessage());
@@ -114,7 +120,8 @@ public class VehicleSurveyEventTest {
 	@Test
 	public void checkSecondSensorIdsEmpty() {
 		try {
-			new VehicleSurveyEvent("a", "", Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT, Calendar.getInstance());
+			new VehicleSurveyEvent("a", "", Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT,
+					Calendar.getInstance());
 			fail("should not reach here");
 		} catch (IllegalArgumentException ex) {
 			assertEquals("Sensor Ids must be of the same length", ex.getMessage());
@@ -124,7 +131,8 @@ public class VehicleSurveyEventTest {
 	@Test
 	public void checkBothSensorIdsEmpty() {
 		try {
-			new VehicleSurveyEvent("", "", Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT, Calendar.getInstance());
+			new VehicleSurveyEvent("", "", Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT,
+					Calendar.getInstance());
 			fail("should not reach here");
 		} catch (IllegalArgumentException ex) {
 			assertEquals("FirstSensorId must not be empty", ex.getMessage());

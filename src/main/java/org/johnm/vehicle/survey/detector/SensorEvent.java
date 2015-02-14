@@ -59,9 +59,9 @@ public class SensorEvent {
 		return millisecondsSinceMidnight.getMillisecondsSinceMidnight();
 	}
 	
-	public void setMidnight(Calendar midnight) {
+	public void setMidnight(final Calendar midnightParam) {
 		final Calendar cal = Calendar.getInstance();
-		cal.setTime(midnight.getTime());
+		cal.setTime(midnightParam.getTime());
 		cal.set(Calendar.HOUR_OF_DAY, 0);
 		cal.set(Calendar.MINUTE, 0);
 		cal.set(Calendar.SECOND, 0);

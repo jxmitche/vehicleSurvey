@@ -20,8 +20,8 @@ public class DoubleHoseSensorVehicleDetectionEvent implements VehicleDetectionEv
 		firstSingleHoseSensorEvent = new SingleHoseSensorVehicleDetectionEvent(firstSensorEvent, thirdSensorEvent, direction);
 		secondSingleHoseSensorEvent = new SingleHoseSensorVehicleDetectionEvent(secondSensorEvent, fourthSensorEvent, direction);
 		
-		isValid = (checkSensorEventsValid(firstSensorEvent.isValid(), secondSensorEvent.isValid(), thirdSensorEvent.isValid(),
-				fourthSensorEvent.isValid())
+		isValid = checkSensorEventsValid(firstSensorEvent.isValid(), secondSensorEvent.isValid(), thirdSensorEvent.isValid(),
+				fourthSensorEvent.isValid()
 				&& checkFirstAndThirdSensorEventsHaveSameId(firstSensorEvent.getSensorId(), thirdSensorEvent.getSensorId()) 
 				&& checkSecondAndFourthSensorEventsHaveSameId(secondSensorEvent.getSensorId(), fourthSensorEvent.getSensorId())
 				&& checkFirstAndSecondSensorEventsHaveDifferentId(firstSensorEvent.getSensorId(), secondSensorEvent.getSensorId())); 
@@ -30,8 +30,8 @@ public class DoubleHoseSensorVehicleDetectionEvent implements VehicleDetectionEv
 	public List<SensorEvent> getSensorEventsInTimeOrder() {
 		
 		final List<SensorEvent> events = new ArrayList<SensorEvent>();
-		List<SensorEvent> firstSensorEvents = firstSingleHoseSensorEvent.getSensorEventsInTimeOrder();
-		List<SensorEvent> secondSensorEvents = secondSingleHoseSensorEvent.getSensorEventsInTimeOrder();
+		final List<SensorEvent> firstSensorEvents = firstSingleHoseSensorEvent.getSensorEventsInTimeOrder();
+		final List<SensorEvent> secondSensorEvents = secondSingleHoseSensorEvent.getSensorEventsInTimeOrder();
 		
 		events.add(firstSensorEvents.get(0));
 		events.add(secondSensorEvents.get(0));
@@ -68,8 +68,8 @@ public class DoubleHoseSensorVehicleDetectionEvent implements VehicleDetectionEv
 	boolean checkSensorEventsValid(final boolean firstSensorEventIsValid, final boolean secondSensorEventIsValid,
 			final boolean thirdSensorEventIsValid, final boolean fourthSensorEventIsValid) {
 		
-		return (firstSensorEventIsValid && secondSensorEventIsValid &&
-				thirdSensorEventIsValid && fourthSensorEventIsValid);
+		return firstSensorEventIsValid && secondSensorEventIsValid &&
+				thirdSensorEventIsValid && fourthSensorEventIsValid;
 	}
 	
 	boolean checkFirstAndThirdSensorEventsHaveSameId(final String firstSensorId, final String thirdSensorId) {

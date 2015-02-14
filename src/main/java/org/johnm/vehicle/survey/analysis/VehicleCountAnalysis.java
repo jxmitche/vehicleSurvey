@@ -14,18 +14,18 @@ import org.johnm.vehicle.survey.validation.NullParamValidator;
 public class VehicleCountAnalysis {
 	private final NullParamValidator nullValidator = new NullParamValidator();
 	private final List<VehicleDetectionEvent> detectionEvents;
-	final Calendar startDate;
-	final int numberOfDays;
+	private final Calendar startDate;
+	private final int numberOfDays;
 	
-	public VehicleCountAnalysis(final List<VehicleDetectionEvent> detectionEvents, final Calendar startDate,
-			final int numberOfDays) {
+	public VehicleCountAnalysis(final List<VehicleDetectionEvent> detectionEventsParam, final Calendar startDateParam,
+			final int numberOfDaysParam) {
 		
-		nullValidator.checkNotNull(detectionEvents, "DetectionEvents");
-		nullValidator.checkNotNull(startDate, "StartDate");
+		nullValidator.checkNotNull(detectionEventsParam, "DetectionEvents");
+		nullValidator.checkNotNull(startDateParam, "StartDate");
 		
-		this.detectionEvents = detectionEvents;
-		this.startDate = startDate;
-		this.numberOfDays = numberOfDays;
+		this.detectionEvents = detectionEventsParam;
+		this.startDate = startDateParam;
+		this.numberOfDays = numberOfDaysParam;
 	}
 	
 	public List<Map<VehicleCountMapKey, Integer>> analyseVehicleCounts(final List<Integer> periodsInOneDayList) {
@@ -60,18 +60,18 @@ public class VehicleCountAnalysis {
 		return countAndTotalMap;
 	}
 	
-	void addPeakVolumePeriod(Map<VehicleCountMapKey, Integer> countAndTotalMap, final int periodsInOneDay) {
+	void addPeakVolumePeriod(final Map<VehicleCountMapKey, Integer> countAndTotalMap, final int periodsInOneDay) {
 		int currentMaxVolumeInPeriod = 0;
 		int currentMaxPeriod = 0;
 		
 		for (int i=1; i<=periodsInOneDay; i++) {
 			VehicleCountMapKey key = new VehicleCountMapKey(0, 0, 0, i, Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT);
-			int totalLtoR = countAndTotalMap.get(key);
+			final int totalLtoR = countAndTotalMap.get(key);
 			
 			key = new VehicleCountMapKey(0, 0, 0, i, Direction.TRAFFIC_PASSES_FROM_RIGHT_TO_LEFT);
-			int totalRtoL = countAndTotalMap.get(key);
+			final int totalRtoL = countAndTotalMap.get(key);
 			
-			int volume = totalLtoR + totalRtoL;
+			final int volume = totalLtoR + totalRtoL;
 			
 			if (volume > currentMaxVolumeInPeriod) {
 				currentMaxVolumeInPeriod = volume;
@@ -79,7 +79,7 @@ public class VehicleCountAnalysis {
 			}
 		}
 		
-		VehicleCountMapKey key = new VehicleCountMapKey(0, 0, 0, currentMaxPeriod, null);
+		final VehicleCountMapKey key = new VehicleCountMapKey(0, 0, 0, currentMaxPeriod, null);
 		countAndTotalMap.put(key, currentMaxVolumeInPeriod);
 	}
 
@@ -105,7 +105,7 @@ public class VehicleCountAnalysis {
 	}
 
 	void initaliseCountForEachDirectionForDateAndPeriod(final Map<VehicleCountMapKey, Integer> countMap, final Calendar currentDate,
-			int periodInDay) {
+			final int periodInDay) {
 		
 		final VehicleCountMapKey mapKeyLtoR = new VehicleCountMapKey(currentDate.get(Calendar.YEAR),
 				currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE),
@@ -120,7 +120,7 @@ public class VehicleCountAnalysis {
 	}
 
 	VehicleCountMapKey createCountMapKeyForVehicleDetectionEvent(final int millisecondsInPeriodPerDay, 
-			VehicleDetectionEvent vehicleDetectionEvent) {
+			final VehicleDetectionEvent vehicleDetectionEvent) {
 		
 		final Calendar eventDate = vehicleDetectionEvent.getVehicleDetectionEventDate();
 		final Direction direction = vehicleDetectionEvent.getDirection();
@@ -134,7 +134,7 @@ public class VehicleCountAnalysis {
 	}
 	
 	VehicleCountMapKey createTotalMapKeyForVehicleDetectionEvent(final int millisecondsInPeriodPerDay, 
-			VehicleDetectionEvent vehicleDetectionEvent) {
+			final VehicleDetectionEvent vehicleDetectionEvent) {
 		
 		final Direction direction = vehicleDetectionEvent.getDirection();
 		final int millis = vehicleDetectionEvent.getMillisecondsAfterMidnightOfEvent();

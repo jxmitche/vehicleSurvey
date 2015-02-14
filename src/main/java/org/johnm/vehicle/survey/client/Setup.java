@@ -20,6 +20,11 @@ import org.johnm.vehicle.survey.reporting.Reporter;
 import org.johnm.vehicle.survey.validation.NullParamValidator;
 
 public class Setup {
+	private static final int PER_QUARTER_HOUR = 96;
+	private static final int PER_20_MINUTES = 72;
+	private static final int PER_HALF_HOUR = 48;
+	private static final int PER_HOUR = 24;
+	private static final int MORNING_AND_EVENING = 2;
 	private static final String firstSensorId = "A";
 	private static final String secondSensorId = "B";
 	
@@ -50,12 +55,11 @@ public class Setup {
 				numberOfDaysInSurveyData);
 		 
 		final List<Integer> periodsInOneDayList = new ArrayList<Integer>();
-		periodsInOneDayList.add(2); //Morning and evenings
-//		periodsInOneDayList.add(24); //per hour
-//		periodsInOneDayList.add(48); //per half hour
-//		periodsInOneDayList.add(72); //per 20 minutes
-//		periodsInOneDayList.add(96); //per 15 minutes
-		//TODO: JM: uncomment these
+		periodsInOneDayList.add(MORNING_AND_EVENING);
+		periodsInOneDayList.add(PER_HOUR);
+		periodsInOneDayList.add(PER_HALF_HOUR);
+		periodsInOneDayList.add(PER_20_MINUTES);
+		periodsInOneDayList.add(PER_QUARTER_HOUR);
 		 
 		countAndTotals = vehicleCountAnalysis.analyseVehicleCounts(periodsInOneDayList);
 	}
@@ -72,7 +76,7 @@ public class Setup {
 	Calendar setStartDateOfSurvey(final String startDateOfSurveyString) {
 		final Calendar cal = Calendar.getInstance();
 		
-		DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+		final DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
 		formatter.setLenient(false);
 		
 		try {

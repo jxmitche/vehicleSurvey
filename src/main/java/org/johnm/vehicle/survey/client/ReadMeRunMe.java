@@ -7,7 +7,7 @@ import org.johnm.vehicle.survey.validation.NullParamValidator;
 public class ReadMeRunMe {
 	private static NullParamValidator nullValidator = new NullParamValidator();
 	
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		nullValidator.checkNotNull(args, "args");
 		
 		if (args.length == 0) {

@@ -15,7 +15,7 @@ public class NullParamValidatorTest {
 	}
 	
 	@Test
-	public void check_nullObject() {
+	public void checkNullObject() {
 		final Object param = null;
 		final String fieldName = "Obj";
 		

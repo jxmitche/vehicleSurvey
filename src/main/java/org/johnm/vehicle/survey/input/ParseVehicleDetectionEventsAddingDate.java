@@ -12,14 +12,14 @@ public class ParseVehicleDetectionEventsAddingDate {
 	private final List<VehicleDetectionEvent> detectionEvents;
 	private final Calendar startDate;
 	
-	public ParseVehicleDetectionEventsAddingDate(final List<VehicleDetectionEvent> detectionEvents, final Calendar startDate) {
-		nullValidator.checkNotNull(detectionEvents, "DetectionEvents");
-		nullValidator.checkNotNull(startDate, "StartDate");
+	public ParseVehicleDetectionEventsAddingDate(final List<VehicleDetectionEvent> detectionEventsParam, final Calendar startDateParam) {
+		nullValidator.checkNotNull(detectionEventsParam, "DetectionEvents");
+		nullValidator.checkNotNull(startDateParam, "StartDate");
 		
-		this.detectionEvents = detectionEvents;
+		this.detectionEvents = detectionEventsParam;
 		
 		final Calendar cal = Calendar.getInstance();
-		cal.setTimeInMillis(startDate.getTimeInMillis());
+		cal.setTimeInMillis(startDateParam.getTimeInMillis());
 		this.startDate = cal;
 	}
 	
@@ -52,7 +52,7 @@ public class ParseVehicleDetectionEventsAddingDate {
 	}
 
 	int addDateToOneSensorEvent(final Calendar currentDate, final int currentMilliseconds, final SensorEvent sensorEvent) {
-		int nextMilliseconds = sensorEvent.getMilliseconds();
+		final int nextMilliseconds = sensorEvent.getMilliseconds();
 		
 		if (nextMilliseconds > currentMilliseconds) {
 			sensorEvent.setMidnight(currentDate);

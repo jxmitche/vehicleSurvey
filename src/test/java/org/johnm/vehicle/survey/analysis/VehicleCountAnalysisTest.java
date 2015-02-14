@@ -77,7 +77,7 @@ public class VehicleCountAnalysisTest {
 	public void checkCreateMapKeyForVehicleDetectionEvent() {
 		final VehicleCountMapKey createdMapKey = analyser.createCountMapKeyForVehicleDetectionEvent(111, event);
 		
-		int periodInDay = event.getMillisecondsAfterMidnightOfEvent() / 111 + 1;
+		final int periodInDay = event.getMillisecondsAfterMidnightOfEvent() / 111 + 1;
 		final VehicleCountMapKey expectedMapKey = new VehicleCountMapKey(2015, Calendar.JANUARY, 2,
 				periodInDay, Direction.TRAFFIC_PASSES_FROM_LEFT_TO_RIGHT);
 		
@@ -98,33 +98,33 @@ public class VehicleCountAnalysisTest {
 	}
 	
 	@Test
-	public void checkCalculatePeriodInDay_Period9() {
-		int millisecondsInPeriodPerDay = 113;
-		int period = analyser.calculatePeriodInDay(millisecondsInPeriodPerDay, 1000);
+	public void checkCalculatePeriodInDayPeriod9() {
+		final int millisecondsInPeriodPerDay = 113;
+		final int period = analyser.calculatePeriodInDay(millisecondsInPeriodPerDay, 1000);
 		
 		assertEquals(9, period);
 	}
 	
 	@Test
-	public void checkCalculatePeriodInDay_Period1() {
-		int millisecondsInPeriodPerDay = 113;
-		int period = analyser.calculatePeriodInDay(millisecondsInPeriodPerDay, 112);
+	public void checkCalculatePeriodInDayPeriod1() {
+		final int millisecondsInPeriodPerDay = 113;
+		final int period = analyser.calculatePeriodInDay(millisecondsInPeriodPerDay, 112);
 		
 		assertEquals(1, period);
 	}
 	
 	@Test
-	public void checkCalculatePeriodInDay_Period2Low() {
-		int millisecondsInPeriodPerDay = 113;
-		int period = analyser.calculatePeriodInDay(millisecondsInPeriodPerDay, 114);
+	public void checkCalculatePeriodInDayPeriod2Low() {
+		final int millisecondsInPeriodPerDay = 113;
+		final int period = analyser.calculatePeriodInDay(millisecondsInPeriodPerDay, 114);
 		
 		assertEquals(2, period);
 	}
 	
 	@Test
-	public void checkCalculatePeriodInDay_Period2High() {
-		int millisecondsInPeriodPerDay = 113;
-		int period = analyser.calculatePeriodInDay(millisecondsInPeriodPerDay, 225);
+	public void checkCalculatePeriodInDayPeriod2High() {
+		final int millisecondsInPeriodPerDay = 113;
+		final int period = analyser.calculatePeriodInDay(millisecondsInPeriodPerDay, 225);
 		
 		assertEquals(2, period);
 	}

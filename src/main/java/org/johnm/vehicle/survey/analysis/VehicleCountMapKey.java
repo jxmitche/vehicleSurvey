@@ -9,12 +9,13 @@ public class VehicleCountMapKey {
 	private int periodInDay;
 	private Direction vehicleDirection;
 	
-	public VehicleCountMapKey(final int year, final int month, final int day, final int periodInDay, final Direction vehicleDirection) {
-		this.year = year;
-		this.month = month;
-		this.day = day;
-		this.periodInDay = periodInDay;
-		this.vehicleDirection = vehicleDirection;
+	public VehicleCountMapKey(final int yearParam, final int monthParam, final int dayParam, final int periodInDayParam,
+			final Direction vehicleDirectionParam) {
+		this.year = yearParam;
+		this.month = monthParam;
+		this.day = dayParam;
+		this.periodInDay = periodInDayParam;
+		this.vehicleDirection = vehicleDirectionParam;
 	}
 	
 	public boolean isMaxVolumePeriodKey() {
@@ -60,14 +61,14 @@ public class VehicleCountMapKey {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		VehicleCountMapKey other = (VehicleCountMapKey) obj;
+		final VehicleCountMapKey other = (VehicleCountMapKey) obj;
 		if (day != other.day)
 			return false;
 		if (month != other.month)
